@@ -16,6 +16,7 @@ class ViewController: UIViewController {
 
     @IBAction func hardnessSelected(_ sender: UIButton) {
         print(sender.currentTitle)
+        let hardness = sender.currentTitle
     }
     
 }
