@@ -25,14 +25,15 @@ class ViewController: UIViewController {
         let hardness = sender.currentTitle!
         totalTime = eggTimes[hardness]!
         
-        secondsRemaining = eggTimes[hardness]!
-        
         Timer.scheduledTimer(timeInterval: 1.0, target:self, selector:
             #selector(updateTimer), userInfo:nil, repeats: true)
       }
     @objc func updateTimer() {
         if secondsPassed > totalTime {
             secondsPassed += 1
+            progressBar.progress = Float(secondsPassed) / Float(totalTime)
+            
+            
         } else {
             timer.invalidate()
             titleLabel.text = "DONE!"
