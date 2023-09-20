@@ -15,18 +15,15 @@ class ViewController: UIViewController {
     
     let eggTimes = ["Soft": 3, "Medium": 4, "Hard": 7]
     
-    var secondsRemaining = 60
-    
     var timer = Timer()
+    var totalTime = 0
+    var secondsPassed = 0
     
     @IBAction func hardnessSelected(_ sender: UIButton) {
         
-        progressBar.progress = 1.0
-    
-        
         timer.invalidate()
-        
         let hardness = sender.currentTitle!
+        totalTime = eggTimes[hardness]!
         
         secondsRemaining = eggTimes[hardness]!
         
@@ -34,9 +31,8 @@ class ViewController: UIViewController {
             #selector(updateTimer), userInfo:nil, repeats: true)
       }
     @objc func updateTimer() {
-        if secondsRemaining > 0 {
-            print("\(secondsRemaining) seconds.")
-            secondsRemaining -= 1
+        if secondsPassed > totalTime {
+            secondsPassed += 1
         } else {
             timer.invalidate()
             titleLabel.text = "DONE!"
